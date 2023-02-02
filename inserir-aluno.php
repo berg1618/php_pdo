@@ -8,10 +8,20 @@ $path = __DIR__ . '/banco.sqlite';
 
 $pdo = new PDO("sqlite:$path");
 
-$student = new Student(null, 'zé lindemberg', new \DateTimeImmutable('2001-06-29'));
+$student = new Student(
+    null,
+    "zé', ''); drop table students; -- lindemberg",
+    new \DateTimeImmutable('2001-06-29')
+);
 
-$sqlInsert = "insert into students (name, birth_date) values ('{$student->name()}','{$student->birthDate()->format('Y-m-d')}');";
+$sqlInsert = "insert into students (name, birth_date) values (?,?);";
 
-$pdo->exec($sqlInsert);
+$statement = $pdo->prepare($sqlInsert);
+$statement->bindValue(1, $student->name());
+$statement->bindValue(2, $student->birthDate()->format('Y-m-d'));
 
-echo $sqlInsert;
+if ($statement->execute()) {
+    echo "Aluno incluído";
+} 
+
+//var_dump($pdo->exec($sqlInsert));

@@ -9,8 +9,12 @@ $path = __DIR__ . '/banco.sqlite';
 $pdo = new PDO("sqlite:$path");
 
 $statement = $pdo->query('select * from students;');
+
 $studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 $studentList = [];
+
+var_dump($studentDataList);
+exit();
 
 foreach ($studentDataList as $studentData) {
     $studentList[] = new Student(
