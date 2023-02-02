@@ -10,15 +10,15 @@ $pdo = new PDO("sqlite:$path");
 
 $student = new Student(
     null,
-    "zé', ''); drop table students; -- lindemberg",
-    new \DateTimeImmutable('2001-06-29')
+    "o fecha gol",
+    new \DateTimeImmutable('2003-03-19')
 );
 
-$sqlInsert = "insert into students (name, birth_date) values (?,?);";
+$sqlInsert = "insert into students (name, birth_date) values (:name,:birth_date);";
 
 $statement = $pdo->prepare($sqlInsert);
-$statement->bindValue(1, $student->name());
-$statement->bindValue(2, $student->birthDate()->format('Y-m-d'));
+$statement->bindValue(':name', $student->name());
+$statement->bindValue(':birth_date', $student->birthDate()->format('Y-m-d'));
 
 if ($statement->execute()) {
     echo "Aluno incluído";
