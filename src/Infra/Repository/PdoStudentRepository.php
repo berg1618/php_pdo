@@ -2,9 +2,8 @@
 
 namespace Alura\Pdo\Infra\Repository;
 
-use Alura\Pdo\Domain\Infra\Persistence\ConnectionCreator;
-use Alura\Pdo\Domain\Infra\Repository\StudentRepository;
 use Alura\Pdo\Domain\Model\Student;
+use Alura\Pdo\Domain\Repository\StudentRepository;
 use PDO;
 
 class PdoStudentRepository implements StudentRepository

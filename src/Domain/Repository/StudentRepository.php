@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Pdo\Domain\Infra\Repository;
+namespace Alura\Pdo\Domain\Repository;
 
 use Alura\Pdo\Domain\Model\Student;
 
